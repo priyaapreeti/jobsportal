@@ -1,6 +1,9 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import dotenv from "dotenv";
+import connectDb from "./utils/db.js";
+dotenv.config({});
 
 const app = express();
 //middlewares
@@ -13,7 +16,8 @@ app.use(cors(corsOptions));
 app.get("/home",(req,res)=>{
   return res.status(200).send({"message" :"from backend"})
 })
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log("listening on 3000 port");
+  connectDb();
+  console.log(`listening on ${PORT} port`);
 });
