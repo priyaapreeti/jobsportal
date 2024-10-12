@@ -1,5 +1,4 @@
-import { application } from "express";
-import mongoose, { Schema } from "mongoose";
+import mongoose from "mongoose";
 const jobsSchema = new mongoose.Schema(
   {
     title: {
