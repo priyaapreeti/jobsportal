@@ -3,6 +3,7 @@ const companySchema = new mongoose.Schema({
   companyName: {
     type: String,
     required: true,
+    unique:true
   },
   location: {
     type: String,
