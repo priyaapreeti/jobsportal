@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,7 +13,10 @@ import {
 import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { USER_API_END_POINT } from "@/utils/endpoints";
+
 const Signup = () => {
+  const navigate = useNavigate();
   const [position, setPosition] = useState({
     fullname: "",
     email: "",
@@ -35,12 +40,28 @@ const Signup = () => {
   // }, [position]);
   const submitter = async (e) => {
     e.preventDefault();
-    try {
-      // axios.post( )
-    } catch (error) {
-      
+    const formData = new FormData();
+    formData.append("fullname", position.fullname);
+    formData.append("email", position.email);
+    formData.append("phone", position.phone);
+    formData.append("password", position.password);
+    formData.append("role", position.role);
+    if (position.photo) {
+      formData.append("photo", position.photo);
     }
-    console.log(position);
+    // console.log(formData);
+    try {
+      const res = await axios.post(`${USER_API_END_POINT}/register`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+        withCredentials: true,
+      });
+      // console.log(res);
+      toast.success(res.data.message);
+      navigate("/login");
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response.data.message);
+    }
   };
   return (
     <div className=" max-w-6xl mx-auto py-5">

@@ -6,7 +6,8 @@ import jwt from "jsonwebtoken";
 export const register = async (req, res) => {
   try {
     const { fullname, email, phone, password, role } = req.body;
-    if ((!fullname, !email || !phone || !password || !role)) {
+    // console.log(fullname, email, phone, password, role );
+    if ((!fullname|| !email || !phone || !password || !role)) {
       return res.status(400).json({ message: "missing data", success: false });
     }
     const user = await Users.findOne({ email });

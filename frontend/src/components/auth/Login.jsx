@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,7 +12,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
+import { toast } from "sonner";
+import { USER_API_END_POINT } from "@/utils/endpoints";
 const Login = () => {
+  const navigate = useNavigate();
   const [position, setPosition] = useState({
     email: "",
     password: "",
@@ -25,17 +30,27 @@ const Login = () => {
   };
   const handleRoleChange = (role) => {
     setPosition({ ...position, role });
-    console.log("Role changed to:", role);
+    // console.log("Role changed to:", role);
   };
   const submitter = async (e) => {
     e.preventDefault();
     if (position.email === "" || position.password === "") {
-      alert("Enter all fields");
+      toast.error("Enter all fields");
     }
     console.log(position);
-    
+    try {
+      const res = await axios.post(`${USER_API_END_POINT}/login`, position, {
+        headers: { "Content-type": "application/json" },
+        withCredentials: true,
+      });
+      // console.log(res);
+      toast.success(res.data.message);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response.data.message);
+    }
     setPosition({ email: "", password: "" });
-
   };
   return (
     <div>
@@ -64,7 +79,7 @@ const Login = () => {
             />
             <Label>Select: </Label>
             <DropdownMenu>
-              <DropdownMenuTrigger>{position.role} </DropdownMenuTrigger>
+              <DropdownMenuTrigger>{position.role}</DropdownMenuTrigger>
               <DropdownMenuRadioGroup
                 onValueChange={handleRoleChange}
                 value={position.role}
