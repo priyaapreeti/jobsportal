@@ -4,30 +4,31 @@ import "./index.css";
 
 import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";
-import Home from "./components/shared/Home"
-import { Toaster } from "@/components/ui/sonner"
+import Home from "./components/shared/Home";
+import { Toaster } from "@/components/ui/sonner";
+import Layout from "./components/auth/layout/Layout";
 
 function App() {
   const Router = createBrowserRouter([
     {
       path: "/",
-      element: <Home />,
+      element: <Layout />,
+      children: [
+        {
+          path: "/login",
+          element: <Login />,
+        },
+        {
+          path: "/signup",
+          element: <Signup />,
+        },
+      ],
     },
-    {
-      path: "/login",
-      element: <Login/>,
-    },
-    {
-      path: "/signup",
-      element: <Signup/>,
-    },
-
   ]);
   return (
     <div>
-      {/* <Navbar/> */}
-      <RouterProvider router={Router}/>
-      <Toaster/>
+      <RouterProvider router={Router} />
+      <Toaster />
     </div>
   );
 }
