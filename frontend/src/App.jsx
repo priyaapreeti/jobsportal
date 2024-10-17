@@ -6,7 +6,7 @@ import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";
 import Home from "./components/shared/Home";
 import { Toaster } from "@/components/ui/sonner";
-import Layout from "./components/auth/layout/Layout";
+import Layout from "./components/layout/Layout";
 
 function App() {
   const Router = createBrowserRouter([
