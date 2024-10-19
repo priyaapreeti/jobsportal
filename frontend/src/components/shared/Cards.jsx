@@ -2,9 +2,9 @@ import React from "react";
 
 const Cards = () => {
   return (
-    <div className="border w-full h-40 text-sm rounded-lg">
-      <div className="flex justify-center">
-        <div className="font-bold">Companyname</div>
+    <div className=" text-center border w-full h-40 text-sm rounded-lg p-4">
+      <div className="flex justify-center items-center">
+        <div className="font-bold">Company name : </div>
         <div> Role</div>
       </div>
       <div>
@@ -12,7 +12,7 @@ const Cards = () => {
         Reiciendis nam molestias enim dolor delectus sint incidunt, veniam
         facilis.
       </div>
-      <div className="flex gap-2 justify-around">
+      <div className="flex gap-2 justify-around p-2">
         <span className="border rounded-full text-blue-600 px-2 font-bold shadow-md">
           10 openings
         </span>

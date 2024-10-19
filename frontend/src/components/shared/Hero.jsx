@@ -32,8 +32,6 @@ const Hero = () => {
           </Button>
         </div>
       </div>
-      <CatogeryCarousal />
-      <LatestJobs/>
     </div>
   );
 };

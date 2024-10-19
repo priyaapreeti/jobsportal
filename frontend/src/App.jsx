@@ -4,10 +4,10 @@ import "./index.css";
 
 import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";
-import Home from "./components/shared/Home";
-import { Toaster } from "@/components/ui/sonner";
 import Layout from "./components/layout/Layout";
-import Hero from "./components/shared/Hero";
+import Home from "./components/shared/Home";
+import Jobs from "./components/shared/Jobs";
+import { Toaster } from "@/components/ui/sonner";
 
 function App() {
   const Router = createBrowserRouter([
@@ -17,7 +17,7 @@ function App() {
       children: [
         {
           path: "/",
-          element: <Hero/>,
+          element: <Home/>,
         },
         {
           path: "/login",
@@ -29,7 +29,7 @@ function App() {
         },
         {
           path: "/jobs",
-          element: <Login />,
+          element: <Jobs />,
         },
         {
           path: "/browse",
