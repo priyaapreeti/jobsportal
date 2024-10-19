@@ -14,8 +14,15 @@ import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
 import { USER_API_END_POINT } from "@/utils/endpoints";
+import { useDispatch, useSelector } from "react-redux";
+import { setLoading } from "@/redux/authslice";
+import { Loader2 } from "lucide-react";
+
 const Login = () => {
+  const { loading } = useSelector((store) => store.auth);
+  // console.log(loading);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [position, setPosition] = useState({
     email: "",
     password: "",
@@ -34,11 +41,14 @@ const Login = () => {
   };
   const submitter = async (e) => {
     e.preventDefault();
-    if (position.email === "" || position.password === "") {
-      toast.error("Enter all fields");
-    }
-    console.log(position);
+
     try {
+      dispatch(setLoading(true));
+      if (position.email === "" || position.password === "") {
+        toast.error("Enter all fields");
+      }
+      console.log(position);
+
       const res = await axios.post(`${USER_API_END_POINT}/login`, position, {
         headers: { "Content-type": "application/json" },
         withCredentials: true,
@@ -49,6 +59,8 @@ const Login = () => {
     } catch (error) {
       console.log(error);
       toast.error(error.response.data.message);
+    } finally {
+      dispatch(setLoading(false));
     }
     setPosition({ email: "", password: "" });
   };
@@ -94,9 +106,15 @@ const Login = () => {
                 </DropdownMenuContent>
               </DropdownMenuRadioGroup>
             </DropdownMenu>
-            <Button type="submit" className="w-full my-4">
-              Login
-            </Button>
+            {loading ? (
+              <Button className="w-full my-4">
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              </Button>
+            ) : (
+              <Button type="submit" className="w-full my-4">
+                Login
+              </Button>
+            )}
             <div>
               New user? <Link to="/signup">Create account here</Link>
             </div>
