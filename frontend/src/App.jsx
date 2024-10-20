@@ -9,6 +9,8 @@ import Home from "./components/shared/Home";
 import Jobs from "./components/shared/Jobs";
 import { Toaster } from "@/components/ui/sonner";
 import Browse from "./components/shared/Browse";
+import Profile from "./components/shared/Profile";
+import JobDesc from "./components/shared/JobDesc";
 
 function App() {
   const Router = createBrowserRouter([
@@ -33,8 +35,16 @@ function App() {
           element: <Jobs />,
         },
         {
+          path: "/description/:id",
+          element: <JobDesc/>
+        },
+        {
           path: "/browse",
           element: <Browse />,
+        },
+        {
+          path: "/profile",
+          element: <Profile />,
         },
       ],
     },

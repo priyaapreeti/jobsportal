@@ -73,7 +73,7 @@ const Signup = () => {
     }
   };
   return (
-    <div className=" max-w-6xl mx-auto py-5">
+    <div className=" max-w-6xl mx-auto py-5 pt-20">
       <h1 className="text-center font-bold">Let's get you started</h1>
       <div className="flex items-center justify-center ">
         <form action="post" className=" w-1/2 p-2" onSubmit={submitter}>

@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
 import { toast } from "sonner";
 import { USER_API_END_POINT } from "@/utils/endpoints";
 import { useDispatch, useSelector } from "react-redux";
-import { setLoading } from "@/redux/authslice";
+import { setLoading, setUser } from "@/redux/authslice";
 import { Loader2 } from "lucide-react";
 
 const Login = () => {
@@ -54,8 +54,11 @@ const Login = () => {
         withCredentials: true,
       });
       // console.log(res);
-      toast.success(res.data.message);
-      navigate("/");
+      if (res.data.success) {
+        dispatch(setUser(res.data.user));
+        toast.success(res.data.message);
+        navigate("/");
+      }
     } catch (error) {
       console.log(error);
       toast.error(error.response.data.message);
@@ -66,7 +69,7 @@ const Login = () => {
   };
   return (
     <div>
-      <div className=" max-w-6xl mx-auto py-5">
+      <div className=" max-w-6xl mx-auto py-5 pt-20">
         <h1 className="text-center font-bold">Welcome back! </h1>
         <div className="flex items-center justify-center ">
           <form action="post" className=" w-1/2 p-2" onSubmit={submitter}>

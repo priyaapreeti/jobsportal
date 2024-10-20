@@ -9,9 +9,11 @@ import React from "react";
 import { Button } from "../ui/button";
 import { LogOut, User2 } from "lucide-react";
 import { Link, NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
-  const user = false;
+  const { user } = useSelector((store) => store.auth);
+  console.log(user);
   return (
     <div className="bg-black fixed w-full text-lg">
       <div className=" flex items-center justify-between p-4 mx-auto max-w-6xl h-16 ">
@@ -21,15 +23,12 @@ const Navbar = () => {
         <div>
           <ul className="text-white flex gap-5 items-center ">
             <li>
-              
               <NavLink to="/">Home</NavLink>
             </li>
             <li>
-              
               <NavLink to="/jobs"> Jobs</NavLink>
             </li>
             <li>
-              
               <NavLink to="/browse">Browse</NavLink>
             </li>
             <li className="cursor-pointer">
@@ -61,17 +60,17 @@ const Navbar = () => {
                         <AvatarFallback>CN</AvatarFallback>
                       </Avatar>
                       <div>
-                        <h1 className="font-bold">Preeti</h1>
-                        <p className="text-muted-foreground">
-                          mai bohot smart hoon
-                        </p>
+                        <h1 className="font-bold">{user.fullname}</h1>
+                        <p className="text-muted-foreground">{user.email}</p>
                       </div>
                     </div>
                     <div className="flex flex-col">
-                      <Button className="w-fit gap-2" variant="link">
-                        {" "}
-                        <User2 /> my profile
-                      </Button>
+                      <Link to="/profile">
+                        
+                        <Button className="w-fit gap-2" variant="link">
+                          <User2 /> my profile
+                        </Button>
+                      </Link>
                       <Button className="w-fit gap-2" variant="link">
                         {" "}
                         <LogOut /> logout
