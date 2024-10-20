@@ -8,6 +8,7 @@ import Layout from "./components/layout/Layout";
 import Home from "./components/shared/Home";
 import Jobs from "./components/shared/Jobs";
 import { Toaster } from "@/components/ui/sonner";
+import Browse from "./components/shared/Browse";
 
 function App() {
   const Router = createBrowserRouter([
@@ -33,7 +34,7 @@ function App() {
         },
         {
           path: "/browse",
-          element: <Login />,
+          element: <Browse />,
         },
       ],
     },
