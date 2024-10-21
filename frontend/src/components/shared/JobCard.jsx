@@ -3,8 +3,10 @@ import { Button } from "../ui/button";
 import { Bookmark } from "lucide-react";
 import { Avatar, AvatarImage } from "../ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import { Link } from "react-router-dom";
 
 const JobCard = () => {
+  const jobId="blahblah"
   return (
     <div className="border p-2 text-sm shadow-md rounded-lg ">
       <div className="flex justify-between items-center">
@@ -56,7 +58,7 @@ const JobCard = () => {
       </div>
       
       <div className="flex items-center gap-4 pt-2 ">
-        <Button variant="outline">More Details</Button>
+        <Link to={`/description/${jobId}`}><Button variant="outline">More Details</Button></Link>
         <Button>Save</Button>
       </div>
     </div>

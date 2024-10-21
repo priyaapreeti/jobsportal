@@ -6,8 +6,8 @@ const Browse = () => {
     <div className="pt-16 max-w-6xl p-4 mx-auto ">
       <div className="p-3 font-bold">Search results: ({random.length})</div>
       <div className="grid grid-cols-3 p-2 gap-4 ">
-        {random.map((item) => (
-          <JobCard />
+        {random.map((item, idx) => (
+          <JobCard  key={idx}/>
         ))}
       </div>
     </div>

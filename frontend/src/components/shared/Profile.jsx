@@ -1,14 +1,16 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { Mail, Pen, Phone } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 import { Label } from "../ui/label";
 import AppliedJobs from "./AppliedJobs";
+import UpdateProfileDialog from "./UpdateProfileDialog";
 
 const Profile = () => {
   const userSkills = ["angular", "python", "c#", "react js"];
   const resume=true;
+  const [open, setOpen] = useState(false);
   return (
     <div className="mx-auto max-w-7xl">
       <div className="pt-16"></div>
@@ -28,7 +30,7 @@ const Profile = () => {
               </div>
             </div>
           </div>
-          <Button variant="outline" size="icon" className="rounded-full hover:scale-105">
+          <Button variant="outline" size="icon" className="rounded-full hover:scale-105" onClick={()=>setOpen(true)}>
             <Pen />
           </Button>
         </div>
@@ -45,7 +47,7 @@ const Profile = () => {
           <div>skills: </div>
           <div className="flex gap-2">
             {userSkills.map((item, idx) => (
-              <Badge>{item}</Badge>
+              <Badge key={idx}>{item}</Badge>
             ))}
           </div>
         </div>
@@ -63,6 +65,7 @@ const Profile = () => {
         {/* application table */}
         <AppliedJobs/>
       </div>
+      <UpdateProfileDialog open={open} setOpen={setOpen}/>
     </div>
   );
 };

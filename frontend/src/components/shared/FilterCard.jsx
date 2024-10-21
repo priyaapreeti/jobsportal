@@ -22,11 +22,11 @@ const FilterCard = () => {
       Filter by :
       <hr className="mt-3" />
       <RadioGroup>
-        {filterData.map((item) => (
-          <div className=" items-center space-x-2">
+        {filterData.map((item, idx) => (
+          <div className=" items-center space-x-2" key={idx}>
             <Label htmlFor={item.filterType} className="font-bold">{item.filterType}</Label>
-            {item.array.map((item) => (
-              <div>
+            {item.array.map((item,idx) => (
+              <div key={idx}>
                 <RadioGroupItem value={item} id="option-one" />
                 <Label htmlFor="option-two">{item}</Label>
               </div>

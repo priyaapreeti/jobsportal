@@ -13,7 +13,7 @@ import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const { user } = useSelector((store) => store.auth);
-  console.log(user);
+  // console.log(user);
   return (
     <div className="bg-black fixed w-full text-lg">
       <div className=" flex items-center justify-between p-4 mx-auto max-w-6xl h-16 ">
